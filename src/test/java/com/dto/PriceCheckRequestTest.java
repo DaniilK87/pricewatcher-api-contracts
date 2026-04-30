@@ -1,10 +1,7 @@
 package com.dto;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import tools.jackson.databind.ObjectMapper;
 
 import java.util.UUID;
 
@@ -14,15 +11,8 @@ public class PriceCheckRequestTest {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    @BeforeEach
-    void setUp() {
-        objectMapper.registerModule(new JavaTimeModule());
-        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-    }
-
-
     @Test
-    void shouldSerializeAllFields() throws Exception {
+    void shouldSerializeAllFields() {
         PriceCheckRequest priceCheckRequest = new PriceCheckRequest(
                 UUID.fromString("0b9d0001-5494-440c-8488-b4ff62335e4c"),
                 "http://test.ru");
@@ -31,11 +21,11 @@ public class PriceCheckRequestTest {
 
         assertThat(json)
                 .contains("0b9d0001-5494-440c-8488-b4ff62335e4c")
-                .contains("http://test.ru");
+                .contains("http:\\/\\/test.ru");
     }
 
     @Test
-    void shouldDeserializeFromJson() throws Exception {
+    void shouldDeserializeFromJson() {
         String json = """
             {
                 "product_id": "0b9d0001-5494-440c-8488-b4ff62335e4c",

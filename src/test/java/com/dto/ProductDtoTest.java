@@ -1,10 +1,7 @@
 package com.dto;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import tools.jackson.databind.ObjectMapper;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -15,14 +12,8 @@ public class ProductDtoTest {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    @BeforeEach
-    void setUp() {
-        objectMapper.registerModule(new JavaTimeModule());
-        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-    }
-
     @Test
-    void shouldSerializeAllFields() throws Exception {
+    void shouldSerializeAllFields() {
         ProductDto productDto = new ProductDto(
                 UUID.fromString("b0f00387-01e1-455f-8d2d-88b6c4d91168"),
                 "test",
@@ -40,7 +31,7 @@ public class ProductDtoTest {
     }
 
     @Test
-    void shouldDeserializeFromJson() throws Exception {
+    void shouldDeserializeFromJson() {
         String json = """
             {
                 "id": "b0f00387-01e1-455f-8d2d-88b6c4d91168",
@@ -60,7 +51,7 @@ public class ProductDtoTest {
     }
 
     @Test
-    void shouldOmitNullFields() throws Exception {
+    void shouldOmitNullFields() {
         ProductDto dto = new ProductDto(
                 UUID.fromString("b0f00387-01e1-455f-8d2d-88b6c4d91168"),
                 "test",
