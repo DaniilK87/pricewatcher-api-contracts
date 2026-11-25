@@ -8,16 +8,9 @@ import java.util.UUID;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public record ProductDto(
-        UUID id,
-
-        String name,
-
-        String url,
-
-        @JsonProperty("user_id")
-        String userId,
-
-        @JsonProperty("threshold_price")
-        BigDecimal thresholdPrice
-) {
-}
+        @JsonProperty("id") UUID id,
+        @JsonProperty("name") String name,
+        @JsonProperty("url") String url,
+        @JsonProperty("user_id") String userId,
+        @JsonProperty("threshold_price") BigDecimal thresholdPrice
+) {}
