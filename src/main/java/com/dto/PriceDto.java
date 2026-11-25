@@ -10,14 +10,10 @@ import java.util.UUID;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public record PriceDto(
-        UUID id,
-
-        @JsonProperty("product_id")
-        UUID productId,
-
-        BigDecimal price,
-
+        @JsonProperty("id") UUID id,
+        @JsonProperty("product_id") UUID productId,
+        @JsonProperty("price") BigDecimal price,
+        @JsonProperty("timestamp")
         @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
         LocalDateTime timestamp
-) {
-}
+) {}
